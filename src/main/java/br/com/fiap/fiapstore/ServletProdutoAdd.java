@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "produto", value = "/produto-servlet")
-public class ServletProduto extends HttpServlet {
+public class ServletProdutoAdd extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nome = request.getParameter("nome");
@@ -17,6 +17,9 @@ public class ServletProduto extends HttpServlet {
         System.out.println("Nome: " + nome +
                 ", Quantidade: " + qtd +
                 ", Preço: " + preco);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("produto", nome+";"+preco);
 
         request.setAttribute("nome", nome);
         request.setAttribute("quantidade", qtd);
